@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>index</title>
+</head>
+<body>
+  <h1>HELLO TEMP DATA</h1>
+
+  <p>celsiusTemp: <span id="c"></span></p><br>
+  <p>humidityTemp: <span id="h"></span></p><br>
+  <p>ip: <span id="ip"></span></p>
+  <script>
+    const url = "http://192.168.0.3:3000/temp";
+    //const url = "https://jsonip.com";
+    //const url = "http://192.168.0.56";
+    async function getData() {
+      const response = await fetch(url);
+      let data = await response.json();
+      data = data[0];
+      const {c, h} = data;
+      document.getElementById('c').textContent = c;
+      document.getElementById('h').textContent = h;
+      //const {ip} = data;
+      //document.getElementById('ip').textContent = ip;
+    }
+    getData();
+    </script>
+</body>
+</html>
